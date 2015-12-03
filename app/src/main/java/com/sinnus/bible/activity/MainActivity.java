@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         sps.edit().remove(STRING_HAS_LEARNED_FAB).commit();
         sps.edit().putInt(STRING_BOOK_ID, current_book_id).commit();
         sps.edit().putInt(STRING_CHAPTER_ID, current_chapter_id).commit();
-        sps.edit().putBoolean(STRING_HAS_LEARNED_FAB, HAS_LEARNED_FAB);
+        sps.edit().putBoolean(STRING_HAS_LEARNED_FAB, HAS_LEARNED_FAB).commit();
     }
 
     @Override
