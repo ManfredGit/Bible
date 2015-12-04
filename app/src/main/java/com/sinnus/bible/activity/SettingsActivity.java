@@ -1,5 +1,6 @@
 package com.sinnus.bible.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -7,10 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.sinnus.bible.R;
+import com.sinnus.bible.fragment.SettingsFragment;
 
 public class SettingsActivity extends BaseActivity {
     private Toolbar mToolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +62,23 @@ public class SettingsActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+    @Override
+    public void onBackPressed(){
+        if (SettingsFragment.THEME_COLOR_CHANGED) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        this.finish();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
     }
 }

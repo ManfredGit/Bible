@@ -160,6 +160,7 @@ public class SettingsFragment extends PreferenceFragment {
                         Intent intent = new Intent(getActivity(), getActivity().getClass());
                         startActivity(intent);
                         getActivity().finish();
+
                     }
                 }
             });

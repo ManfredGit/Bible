@@ -1,6 +1,8 @@
 package com.sinnus.bible.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +34,9 @@ import com.sinnus.bible.bean.Bible;
 import com.sinnus.bible.bean.Book;
 import com.sinnus.bible.bean.Chapter;
 import com.sinnus.bible.fragment.MainFragment;
+import com.sinnus.bible.fragment.SettingsFragment;
 import com.sinnus.bible.util.AutoRefreshMap;
+import com.sinnus.bible.util.ThemeUtil;
 import com.sinnus.bible.util.TimeUtil;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, AdapterView.OnItemClickListener {
@@ -59,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     public static String STRING_BOOK_ID = "book_id";
     public static String STRING_CHAPTER_ID = "chapter_id";
     public static String STRING_HAS_LEARNED_FAB = "has_learned_fab";
+    public static String STRING_IS_LIGHT = "is_light";
+
+    private static boolean IS_LIGHT;
     private static boolean HAS_LEARNED_FAB;
 
     private AutoRefreshMap autoRefreshMap;
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         loadHistory();
         autoRefreshMap = new AutoRefreshMap(this.current_book_id, this);//自动初始化 curbook，net_book,
         //和prev_book,并且自动更新
+        initTheme();
         setContentView(R.layout.main);
         initImmersedStatusBar();
         initDrawerLayout();
@@ -91,8 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         if (id == R.id.action_exit) {
             this.finish();
             return true;
-        }
-        else if (id == R.id.action_chapter) {
+        } else if (id == R.id.action_chapter) {
             if (!mSlidingDrawer.isOpened()) {//关闭的，就打开
                 setLocateBoardView(1);
                 mSlidingDrawer.animateToggle();
@@ -121,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
         View view = findViewById(R.id.main);
         view.setPadding(0, status_bar_height, 0, 0);
+
+        //获取root view然后设置padding也行，但是效果不太好，因为下面有一点的阴影，不太好看
+//        this.getWindow().getDecorView().setPadding(0, status_bar_height, 0, 0);
+//        this.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.black));
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -138,6 +149,15 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         int id = menuItem.getItemId();
+                        if (id == R.id.nav_setting) {
+                            final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                }
+                            }, 250);
+                        }
                         if (id == R.id.nav_exit) {
                             MainActivity.this.finish();
                         }
@@ -184,8 +204,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                                     HAS_LEARNED_FAB = true;
                                 }
                             }).show();
-                }
-                else {
+                } else {
                     myFragmentPagerAdapter.currentFragment.changeMode();
                 }
             }
@@ -254,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         current_book_id = sps.getInt(STRING_BOOK_ID, 43);
         current_chapter_id = sps.getInt(STRING_CHAPTER_ID, 1);
         HAS_LEARNED_FAB = sps.getBoolean(STRING_HAS_LEARNED_FAB, false);
+        IS_LIGHT = sps.getBoolean(STRING_IS_LIGHT, false);
     }
 
     public void saveHistory() {
@@ -264,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         sps.edit().putInt(STRING_BOOK_ID, current_book_id).commit();
         sps.edit().putInt(STRING_CHAPTER_ID, current_chapter_id).commit();
         sps.edit().putBoolean(STRING_HAS_LEARNED_FAB, HAS_LEARNED_FAB).commit();
+        sps.edit().putBoolean(STRING_IS_LIGHT, IS_LIGHT).commit();
     }
 
     @Override
@@ -331,6 +352,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
             sp.setVisibility(View.VISIBLE);
             gridViewChapter.setVisibility(View.GONE);
         }
+    }
+
+    public void initTheme() {
+        ThemeUtil.setTheme(this, ThemeUtil.getCurrentTheme(this));
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
     }
 
 }

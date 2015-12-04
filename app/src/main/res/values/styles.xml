@@ -6,11 +6,13 @@
 
         <item name="actionMenuTextColor">@color/white</item>
         <item name="actionMenuTextAppearance">@style/MyTextAppearance</item>
+        <!--actionMenuTextColor更改actionMenu的字体颜色，
+        actionMenuTextAppearance 只能改acctionMenu上字体的大小，不能更改颜色，
+        而在toolbar的menu样式中应该可以都改。-->
+
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
 
 
-        <!--更改actionMenu上面字体大小，但是无法更改toolbar中的menu中的字体的颜色
-        更改toolbar中的menu上的字体颜色必须去设置toolbar theme中的menu设置-->
 
         <!--<item name="android:actionMenuTextColor">@color/baixing</item>-->
         <!--item name="android:fitsSystemWindows">true</item>
@@ -52,6 +54,7 @@
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/green</item>
         <item name="colorAccent">@color/green</item>
+        <item name="android:windowBackground">@color/main_background</item>
     </style>
 
     <style name="BlueTheme" parent="AppBaseTheme">
@@ -64,18 +67,21 @@
         <item name="colorPrimary">@color/pink</item>
         <item name="colorPrimaryDark">@color/pink</item>
         <item name="colorAccent">@color/pink</item>
+        <item name="android:windowBackground">@color/main_background</item>
     </style>
 
     <style name="BiluTheme" parent="AppBaseTheme">
         <item name="colorPrimary">@color/bilu</item>
         <item name="colorPrimaryDark">@color/bilu</item>
         <item name="colorAccent">@color/bilu</item>
+        <item name="android:windowBackground">@color/main_background</item>
     </style>
 
     <style name="BlackTheme" parent="AppBaseTheme">
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">@color/night</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
     </style>
 
     <style name="BlueGreyTheme" parent="AppBaseTheme">
@@ -83,7 +89,7 @@
         <item name="colorPrimaryDark">@color/BlueGrey900</item>
         <item name="colorAccent">@color/BlueGrey900</item>
     </style>
-    <style name="AppTheme" parent="GreenTheme">
+    <style name="AppTheme" parent="BlackTheme">
         <!-- Customize your theme here. -->
     </style>
 </resources>
