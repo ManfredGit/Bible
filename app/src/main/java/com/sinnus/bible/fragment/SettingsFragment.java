@@ -204,11 +204,10 @@ public class SettingsFragment extends PreferenceFragment {
 
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                    TextView textView;
+                    CircleView textView;
                     if (convertView == null) {
-                        textView = new TextView(getActivity());
+                        textView = new CircleView(getActivity());
                         textView.setHeight(150);
-                        textView.setPadding(0, 0, 0, 0);
                         textView.setBackgroundColor(getActivity().getResources().getColor(colorList[position]));
                         return textView;
                     } else {
