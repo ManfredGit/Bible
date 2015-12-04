@@ -21,6 +21,7 @@ import com.jenzz.materialpreference.SwitchPreference;
 import com.sinnus.bible.R;
 import com.sinnus.bible.util.PreferenceUtil;
 import com.sinnus.bible.util.ThemeUtil;
+import com.sinnus.bible.view.CircleView;
 
 public class SettingsFragment extends PreferenceFragment {
     public static final String SETTING_PREFERENCE_FILE_NAME = "SETTING_PREFERENCE";
@@ -135,11 +136,12 @@ public class SettingsFragment extends PreferenceFragment {
 
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                    TextView textView;
+                    CircleView textView;
                     if (convertView == null) {
-                        textView = new TextView(getActivity());
-                        textView.setHeight(150);
-                        textView.setPadding(0, 0, 0, 0);
+                        textView = new CircleView(getActivity());
+                        textView.setHeight(80);
+                        textView.setWidth(80);
+                        textView.setPadding(10, 10, 10, 10);
                         textView.setBackgroundColor(getActivity().getResources().getColor(colorList[position]));
                         return textView;
                     } else {

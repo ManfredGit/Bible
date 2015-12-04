@@ -3,8 +3,9 @@
     android:id="@+id/change_theme_dialog"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:padding="8dp"
     android:layout_weight="1"
     android:gravity="center"
-    android:horizontalSpacing="0dp"
-    android:numColumns="4"
-    android:verticalSpacing="0dp" />
+    android:horizontalSpacing="8dp"
+    android:numColumns="5"
+    android:verticalSpacing="8dp" />
