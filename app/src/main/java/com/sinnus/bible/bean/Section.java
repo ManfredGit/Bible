@@ -2,6 +2,7 @@ package com.sinnus.bible.bean;
 
 /**
  * Created by sinnus on 2015/8/4.
+ * 包括bookId、chapterId、id、content。
  */
 public class Section {
     private int bookId;

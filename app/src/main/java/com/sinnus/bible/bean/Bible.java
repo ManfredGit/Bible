@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Created by sinnus on 2015/8/4.
+ * bible类代表圣经，其中包含常量，书卷的全名、简写名字、章节数等。
+ *
  */
 
 public class Bible {

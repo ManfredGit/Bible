@@ -9,11 +9,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Created by sinnus on 2015/8/4.
+ * book 类代表一个书卷，其中包含id、章的个数、和其中的chapter列表
+ * 书卷 具有载入自己的函数
+ *
+ */
 public class Book {
     private int id;
     private int chapterNum;
     private ArrayList<Chapter> content;
-    private String temp;
 
     public Book(int id, Context context) {
         this.id = id;
@@ -23,7 +28,7 @@ public class Book {
         this.loadNotesFromFile(context);
     }
 
-    private void load(Context context) {
+    private void loadFromDataBase(Context context) {//使用数据库载入数据，比较慢
         DatabaseUtil dbUtil = new DatabaseUtil(context);
         dbUtil.queryBook(this);
     }

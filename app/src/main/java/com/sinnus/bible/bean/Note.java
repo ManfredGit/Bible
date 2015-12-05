@@ -2,6 +2,7 @@ package com.sinnus.bible.bean;
 
 /**
  * Created by sinnus on 2015/8/28.
+ * 代表一条 灵修笔记
  */
 public class Note {
     private int bookId;

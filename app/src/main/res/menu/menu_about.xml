@@ -2,6 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.sinnus.bible.activity.AboutActivity">
-    <item android:id="@+id/action_settings" android:title="@string/title_settings"
+    <item android:id="@+id/action_settings" android:title="没啥东西"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
