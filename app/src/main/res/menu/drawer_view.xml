@@ -23,10 +23,6 @@
 
     <group android:title="选择">
             <item
-                android:id="@+id/night_mode"
-                android:icon="@android:drawable/ic_menu_compass"
-                android:title="夜晚"/>
-            <item
                 android:id="@+id/nav_exit"
                 android:icon="@android:drawable/ic_lock_power_off"
                 android:title="@string/title_exit"/>

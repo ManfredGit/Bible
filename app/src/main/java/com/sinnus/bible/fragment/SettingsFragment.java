@@ -65,6 +65,7 @@ public class SettingsFragment extends PreferenceFragment {
         if (TextUtils.equals(key, getString(R.string.night_mode_key))) {
             nightMode = !nightMode;
             preferenceUtil.saveBooleanParam(getString(R.string.night_mode_key), nightMode);
+            changeTheme(4);
         }
         if (TextUtils.equals(key, getString(R.string.change_background_color_key))) {
             Dialog dialog = new ChangeBackgroundDialog(getActivity(), "选择背景", ThemeUtil.backGroundColors);
@@ -156,13 +157,7 @@ public class SettingsFragment extends PreferenceFragment {
                     ChangeThemeDialog.this.dismiss();
                     int value = ThemeUtil.getCurrentTheme(getActivity());
                     if (value != position) {
-                        preferenceUtil.saveIntParam(getString(R.string.change_theme_key), position);
-                        THEME_COLOR_CHANGED = true;
-
-                        Intent intent = new Intent(getActivity(), getActivity().getClass());
-                        startActivity(intent);
-                        getActivity().finish();
-
+                        changeTheme(position);
                     }
                 }
             });
@@ -207,7 +202,8 @@ public class SettingsFragment extends PreferenceFragment {
                     CircleView textView;
                     if (convertView == null) {
                         textView = new CircleView(getActivity());
-                        textView.setHeight(150);
+                        textView.setHeight(80);
+                        textView.setPadding(10, 10, 10, 10);
                         textView.setBackgroundColor(getActivity().getResources().getColor(colorList[position]));
                         return textView;
                     } else {
@@ -235,5 +231,13 @@ public class SettingsFragment extends PreferenceFragment {
         getView().setBackgroundColor(getActivity().getResources().getColor(
                 ThemeUtil.getCurrentBackgroundColorResourceId(getActivity(), position)
         ));
+    }
+
+    public void changeTheme(int position){
+        preferenceUtil.saveIntParam(getString(R.string.change_theme_key), position);
+        THEME_COLOR_CHANGED = true;
+        Intent intent = new Intent(getActivity(), getActivity().getClass());
+        startActivity(intent);
+        getActivity().finish();
     }
 }
