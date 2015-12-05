@@ -51,6 +51,8 @@ public class SettingsActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
     public void setImmersedStatusBar(){
         int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");
         int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);

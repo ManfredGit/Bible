@@ -39,7 +39,7 @@ import com.sinnus.bible.util.AutoRefreshMap;
 import com.sinnus.bible.util.ThemeUtil;
 import com.sinnus.bible.util.TimeUtil;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, AdapterView.OnItemClickListener {
+public class MainActivity extends BaseActivity implements MainFragment.OnFragmentInteractionListener, AdapterView.OnItemClickListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -72,13 +72,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); //调用baseActivity并且载入主题
         loadHistory();
         autoRefreshMap = new AutoRefreshMap(this.current_book_id, this);//自动初始化 curbook，net_book,
         //和prev_book,并且自动更新
-        initTheme();
         setContentView(R.layout.main);
-        initImmersedStatusBar();
+        setImmersedStatusBar();
         initDrawerLayout();
         initFloatingActionButton();
         initMainView();
@@ -123,7 +122,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         return super.onOptionsItemSelected(item);
     }
 
-    public void initImmersedStatusBar() {
+    @Override
+    public void setImmersedStatusBar() {
         int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");
         int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
         View view = findViewById(R.id.main);
@@ -151,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                         int id = menuItem.getItemId();
                         if (id == R.id.nav_setting) {
                             final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                }
+                            }, 250);
+                        }
+                        if (id == R.id.nav_about) {
+                            final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -354,11 +363,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         }
     }
 
-    public void initTheme() {
-        ThemeUtil.setTheme(this, ThemeUtil.getCurrentTheme(this));
-    }
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
     }
 
