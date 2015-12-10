@@ -12,9 +12,13 @@
 ![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/2.jpg)
 ![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/3.jpg)
 ![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/4.jpg)
+![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/5.jpg)
+![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/6.jpg)
+![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/7.jpg)
+![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/8.jpg)
 
 ###下载链接
-[下载APK](https://github.com/sinnuswong/Bible/blob/master/apk/bible.apk)
+[下载APK](https://github.com/sinnuswong/Bible/blob/master/app\build\outputs\apk\app-debug.apk)
 ###关于我
 
 * **Email:** [sinnus@qq.com]
