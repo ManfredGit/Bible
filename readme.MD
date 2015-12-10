@@ -18,7 +18,7 @@
 ![image](https://github.com/sinnuswong/Bible/blob/master/screenshots/8.jpg)
 
 ###下载链接
-[下载APK](https://github.com/sinnuswong/Bible/blob/master/app\build\outputs\apk\app-debug.apk)
+[下载APK](https://github.com/sinnuswong/Bible/blob/master/app/build/outputs/apk/app-debug.apk)
 ###关于我
 
 * **Email:** [sinnus@qq.com]
