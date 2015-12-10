@@ -10,14 +10,14 @@ import android.util.Log;
  * Created by sinnus on 2015/8/31.
  */
 public class ColorUtil {
-    public void getPixColor(Context context,int pictureId){
+    public static void getPixColor(Context context,int pictureId){
         Bitmap src =  BitmapFactory.decodeResource(context.getResources(), pictureId);
         int A, R, G, B;
         int pixelColor;
         int height = src.getHeight();
         int width = src.getWidth();
 
-        pixelColor = src.getPixel(width/2, height/2);
+        pixelColor = src.getPixel(width/2, height/4);
         A = Color.alpha(pixelColor);
         R = Color.red(pixelColor);
         G = Color.green(pixelColor);

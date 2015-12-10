@@ -75,9 +75,10 @@ public class SettingsActivity extends BaseActivity {
     public void onBackPressed(){
         if (SettingsFragment.THEME_COLOR_CHANGED) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
-        this.finish();
+        super.onBackPressed();
     }
     @Override
     public void onDestroy(){

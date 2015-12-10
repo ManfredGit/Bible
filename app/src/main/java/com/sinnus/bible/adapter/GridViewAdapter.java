@@ -77,7 +77,7 @@ public class GridViewAdapter extends BaseAdapter {
         textView.setHeight(150);
         textView.setPadding(0, 0, 0, 0);
         textView.setTextSize(20);
-//        textView.setTextColor(context.getResources().getColor(R.color.gray));
+        textView.setTextColor(context.getResources().getColor(R.color.gray));
         return textView;
     }
 }

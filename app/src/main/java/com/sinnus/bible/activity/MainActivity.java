@@ -36,6 +36,7 @@ import com.sinnus.bible.bean.Chapter;
 import com.sinnus.bible.fragment.MainFragment;
 import com.sinnus.bible.fragment.SettingsFragment;
 import com.sinnus.bible.util.AutoRefreshMap;
+import com.sinnus.bible.util.ColorUtil;
 import com.sinnus.bible.util.ThemeUtil;
 import com.sinnus.bible.util.TimeUtil;
 
@@ -81,6 +82,8 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
         initDrawerLayout();
         initFloatingActionButton();
         initMainView();
+
+        ColorUtil.getPixColor(this,R.drawable.t);
     }
 
     @Override

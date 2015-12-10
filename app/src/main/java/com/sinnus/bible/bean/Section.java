@@ -10,7 +10,7 @@ public class Section {
     private int id;
     private String content;
 
-    public Section(int id,String content,int chapterId,int bookId){
+    public Section(int id, String content, int chapterId, int bookId) {
         this.id = id;
         this.content = content;
         this.chapterId = chapterId;
@@ -18,20 +18,33 @@ public class Section {
     }
 
 
-
-    public String getContent(){
+    public String getContent() {
         return this.content;
     }
-    public int getId(){return id;}
-    public int getBookId(){return bookId;}
-    public int getChapterId(){return chapterId;}
 
-    public String toMessageString(){
-        return getContent()+"("+Bible.getBookName(getBookId())
-                +getChapterId()+":"+id +")";
+    public int getId() {
+        return id;
     }
-    public String toString(){
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public int getChapterId() {
+        return chapterId;
+    }
+
+    public String toMessageString() {
+        return getContent() + "(" + Bible.getBookName(getBookId())
+                + getChapterId() + ":" + id + ")";
+    }
+
+    public String toString() {
         return content;
+    }
+
+    public String toLocationString() {
+        return Bible.getBookSimpleName(getBookId()) + " " + getChapterId() + ":" + id;
     }
 }
 

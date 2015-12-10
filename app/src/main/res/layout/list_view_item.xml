@@ -17,7 +17,7 @@
         android:paddingTop="6dp"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:textColor="@color/gray"
+        android:textColor="?attr/bibleTextColor"
         android:textSize="18dp"
         android:lineSpacingExtra="6dp"
         />

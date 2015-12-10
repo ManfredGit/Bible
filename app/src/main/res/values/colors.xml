@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="main_background">#ffebcd</color>
+    <color name="window_background_light">@color/main_background</color>
     <color name="navigationBarColor">#4876FF</color>
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
@@ -26,4 +27,11 @@
     <color name="ripple">#ff80ab</color>
     <color name="accent">#ff4081</color>
     <color name="accent_pressed">#f50057</color>
+
+    <color name="colorPrimaryDarkTheme">#4a4959</color>
+    <color name="colorPrimaryDarkDarkTheme">#525065</color>
+    <color name="window_background_dark">#252424</color>
+    <color name="window_background_black">#ff1e1c1d</color>
+    <color name="bibleTextColorDark">#ff74736f</color>
+    <color name="bibleTextColorLight">@color/gray</color>
 </resources>

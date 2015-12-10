@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.jenzz.materialpreference.Preference;
 import com.jenzz.materialpreference.SwitchPreference;
@@ -88,7 +87,7 @@ public class SettingsFragment extends PreferenceFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initBackground(ThemeUtil.getCurrentBackgroundColor(getActivity()));
+//        initBackground(ThemeUtil.getCurrentBackgroundColor(getActivity()));
     }
 
     @Override
