@@ -43,7 +43,7 @@ public class Section {
         return content;
     }
 
-    public String toLocationString() {
+    public String getLocationString() {
         return Bible.getBookSimpleName(getBookId()) + " " + getChapterId() + ":" + id;
     }
 }

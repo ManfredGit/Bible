@@ -3,8 +3,10 @@ package com.sinnus.bible.util;
 import com.sinnus.bible.activity.MainActivity;
 import com.sinnus.bible.bean.Book;
 import com.sinnus.bible.bean.Chapter;
+import com.sinnus.bible.bean.Section;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by sinnus on 2015/10/23.
@@ -21,7 +23,7 @@ public class AutoRefreshMap{
         load(this.key);
     }
 
-    public void load(Integer id) {
+    public void load(Integer id) { //载入对应书卷
         if (this.key != id) {
             this.key = id;
         }
@@ -32,7 +34,7 @@ public class AutoRefreshMap{
         activity.current_book = this.content.get(this.key);
         autoLoad();
     }
-    public void autoLoad(){
+    public void autoLoad(){ //载入相邻的书卷
 
         if (this.key - 1 > 0 && !this.content.containsKey(this.key - 1)) {
             Book book = new Book(this.key-1, this.activity);
@@ -45,7 +47,7 @@ public class AutoRefreshMap{
 
 
     }
-    public void loadBesideBooks(int bookId) {
+    public void loadBesideBooks(int bookId) { //在后台线程中载入
         key = bookId;
         new Thread(new Runnable() {
             @Override
@@ -55,11 +57,23 @@ public class AutoRefreshMap{
         }).start();
 
     }
-
     public Chapter obtainChapter(int bookId, int chapterId) {
         if (this.content.containsKey(bookId)) {
             return this.content.get(bookId).getChapter(chapterId-1);
         }
-        else return new Chapter(bookId, chapterId);
+        else return new Chapter(bookId, chapterId); //空chapter
+    }
+    public Section obtainRandomSection() {
+        if (this.content.get(this.key) != null) {
+            Book book = this.content.get(this.key);
+            int chapterNum = book.getChapterNum();
+            Random random = new Random();
+            int randomChapterId = random.nextInt(chapterNum);
+            Chapter randomChapter = book.getChapter(randomChapterId);
+            int randomSectionId = random.nextInt(randomChapter.getSectionNum());
+            Section randomSection = randomChapter.getSection(randomSectionId);
+            return randomSection;
+        }
+        return new Section(-1, "", -1, -1);//空section
     }
 }

@@ -33,6 +33,7 @@ import com.sinnus.bible.adapter.MyFragmentPagerAdapter;
 import com.sinnus.bible.bean.Bible;
 import com.sinnus.bible.bean.Book;
 import com.sinnus.bible.bean.Chapter;
+import com.sinnus.bible.bean.Section;
 import com.sinnus.bible.fragment.MainFragment;
 import com.sinnus.bible.fragment.SettingsFragment;
 import com.sinnus.bible.util.AutoRefreshMap;
@@ -40,12 +41,21 @@ import com.sinnus.bible.util.ColorUtil;
 import com.sinnus.bible.util.ThemeUtil;
 import com.sinnus.bible.util.TimeUtil;
 
+import org.w3c.dom.Text;
+
+import java.net.SecureCacheResponse;
+import java.util.Random;
+
 public class MainActivity extends BaseActivity implements MainFragment.OnFragmentInteractionListener, AdapterView.OnItemClickListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private View mNavigationHeader;
+    private TextView navSectionContent;
+    private TextView navSectionLocation;
     private Toolbar mToolbar;
     private ViewPager mViewPager;
+
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private SlidingDrawer mSlidingDrawer;
     public LinearLayout slidingDrawerContent = null;
@@ -144,6 +154,12 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
     public void initDrawerLayout() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+//        mNavigationHeader = mNavigationView.inflateHeaderView(R.layout.navigation_header);
+        navSectionContent = (TextView) findViewById(R.id.nav_section_content);
+        navSectionLocation = (TextView) findViewById(R.id.nav_section_location);
+        Section section = autoRefreshMap.obtainRandomSection();
+        navSectionContent.setText(section.getContent());
+        navSectionLocation.setText(section.getLocationString());
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -188,6 +204,9 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                Section section = autoRefreshMap.obtainRandomSection();
+                navSectionContent.setText(section.getContent());
+                navSectionLocation.setText(section.getLocationString());
             }
 
             @Override
