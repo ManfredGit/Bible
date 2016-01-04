@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
 //        this.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.black));
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
     }
 

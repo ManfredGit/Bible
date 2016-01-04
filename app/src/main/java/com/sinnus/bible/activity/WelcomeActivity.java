@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sinnus.bible.R;
 import com.sinnus.bible.bean.Book;
+import com.sinnus.bible.util.ColorUtil;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,10 @@ public class WelcomeActivity extends BaseActivity {
                 WelcomeActivity.this.finish();
             }
         }, 1000);
+        ColorUtil.getPixColor(this, R.mipmap.t);
+        ColorUtil.getPixColor(this, R.mipmap.divder);
+        ColorUtil.getPixColor(this,R.mipmap.zhihu);
+
 
     }
 
