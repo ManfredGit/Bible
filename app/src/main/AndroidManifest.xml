@@ -20,10 +20,13 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity android:name=".activity.SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".activity.TrackActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity android:name=".activity.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

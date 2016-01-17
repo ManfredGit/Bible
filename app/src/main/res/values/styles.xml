@@ -12,7 +12,7 @@
         <item name="actionMenuTextAppearance">@style/MyTextAppearance</item>
         <item name="android:windowBackground">@color/window_background_light</item>
         <item name="bibleTextColor">@color/bibleTextColorLight</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
         <!--actionMenuTextColor更改actionMenu的字体颜色，
         actionMenuTextAppearance 只能改acctionMenu上字体的大小，不能更改颜色，
         而在toolbar的menu样式中应该可以都改。-->

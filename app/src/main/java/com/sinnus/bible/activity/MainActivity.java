@@ -2,6 +2,7 @@ package com.sinnus.bible.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.TransitionDrawable;
 import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
@@ -87,7 +88,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
         loadHistory();
         autoRefreshMap = new AutoRefreshMap(this.current_book_id, this);//自动初始化 curbook，net_book,
         //和prev_book,并且自动更新
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
         setImmersedStatusBar();
         initDrawerLayout();
         initFloatingActionButton();
@@ -139,8 +140,8 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
     public void setImmersedStatusBar() {
         int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");
         int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
-        View view = findViewById(R.id.main);
-        view.setPadding(0, status_bar_height, 0, 0);
+//        View view = findViewById(R.id.main);
+//        view.setPadding(0, status_bar_height, 0, 0);
 
         //获取root view然后设置padding也行，但是效果不太好，因为下面有一点的阴影，不太好看
 //        this.getWindow().getDecorView().setPadding(0, status_bar_height, 0, 0);
@@ -168,6 +169,16 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         int id = menuItem.getItemId();
+
+                        if (id == R.id.nav_history) {
+                            final Intent intent = new Intent(MainActivity.this, TrackActivity.class);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                }
+                            }, 250);
+                        }
                         if (id == R.id.nav_setting) {
                             final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                             new Handler().postDelayed(new Runnable() {
