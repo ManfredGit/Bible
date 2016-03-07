@@ -36,13 +36,6 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        System.out.println("onCreate :" + id);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         System.out.println("onCreateView :" + id);
@@ -81,8 +74,6 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        System.out.println("onDetach :" + id);
-
         super.onDetach();
         mListener = null;
     }
@@ -90,7 +81,7 @@ public class MainFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         public Chapter onFragmentInteraction(int bookId,int chapterId);
     }
-    public void setChapterById() {
+    public void setChapterById() { //根据fragmentId找到bookId和chapterId
         int bookId = Bible.getRelativeInfoById(id)[0];
         int chapterId = Bible.getRelativeInfoById(id)[1];
         this.chapter = mListener.onFragmentInteraction(bookId, chapterId);

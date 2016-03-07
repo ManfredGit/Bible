@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_done"
+            android:src="@android:drawable/sym_action_chat"
             app:backgroundTint="?attr/colorPrimary"
             app:rippleColor="#33728dff" />
     </android.support.design.widget.CoordinatorLayout>

@@ -17,25 +17,34 @@ public class ThemeUtil {
             R.style.BlackTheme};
 
     public static Integer[] backGroundColors = {
-            R.color.main_background, R.color.black
+            R.color.main_background, R.color.black,R.color.window_background_dark
     };
     public static void setTheme(Activity activity, int theme) {
         if (activity == null)
             return;
         activity.setTheme(styles[theme]);
     }
-//    public static void setBackGroundColor(MainFragment mainFragment,int position){
-//        mainFragment.viewPager.setBackgroundColor(
-//                mainFragment.getActivity().getResources().getColor(backGroundColors[position])
-//        );
-//        mainFragment.slidingDrawerContent.setBackgroundColor(
-//                mainFragment.getActivity().getResources().getColor(backGroundColors[position]));
-//    }
+
+    public static boolean isNightMode(Context context) {
+        boolean value = PreferenceUtil.getInstance(context)
+                .getBooleanParam(context.getString(R.string.night_mode_key), false);
+        return value;
+    }
+
+    public static void setBackgroundColor(Activity activity,int position){
+        activity.getWindow().getDecorView().findViewById(android.R.id.content).setBackgroundColor(activity.getResources().getColor(
+                        getCurrentBackgroundColorResourceId(activity, position))
+        );
+    }
 
     public static int getCurrentTheme(Context context) {
         int value = PreferenceUtil.getInstance(context)
                 .getIntParam(context.getString(R.string.change_theme_key), 0);
         return value;
+    }
+
+    public static int getDarkThemePosition() {
+        return 4;
     }
     public static int getCurrentBackgroundColor(Context context){
         int value = PreferenceUtil.getInstance(context)

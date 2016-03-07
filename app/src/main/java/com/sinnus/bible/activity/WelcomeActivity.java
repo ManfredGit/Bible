@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextThemeWrapper;
 import android.widget.TextView;
 
 import com.sinnus.bible.R;
@@ -34,10 +35,11 @@ public class WelcomeActivity extends BaseActivity {
                 WelcomeActivity.this.finish();
             }
         }, 1000);
-        ColorUtil.getPixColor(this, R.mipmap.t);
-        ColorUtil.getPixColor(this, R.mipmap.divder);
-        ColorUtil.getPixColor(this,R.mipmap.zhihu);
-
+//        ColorUtil.getPixColor(this, R.mipmap.t);
+//        ColorUtil.getPixColor(this, R.mipmap.divder);
+//        ColorUtil.getPixColor(this,R.mipmap.zhihu);
+        ColorUtil.getPixColor(this,R.mipmap.weixin);
+        ColorUtil.getPixColor(this, R.mipmap.bc);
 
     }
 

@@ -11,7 +11,6 @@ import com.sinnus.bible.R;
 import com.sinnus.bible.fragment.SettingsFragment;
 
 public class SettingsActivity extends BaseActivity {
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class SettingsActivity extends BaseActivity {
         int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
 
         View view = findViewById(R.id.settings_main);
-        view.setPadding(0, status_bar_height, 0, 0);
+//        view.setPadding(0, status_bar_height, 0, 0);
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         mToolbar.setTitle("设置");
         setSupportActionBar(mToolbar);
@@ -73,7 +72,7 @@ public class SettingsActivity extends BaseActivity {
     }
     @Override
     public void onBackPressed(){
-        if (SettingsFragment.THEME_COLOR_CHANGED) {
+        if (SettingsFragment.THEME_COLOR_CHANGED|SettingsFragment.NIGHT_MODE_CHANGED) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

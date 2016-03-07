@@ -34,4 +34,8 @@
     <color name="window_background_black">#ff1e1c1d</color>
     <color name="bibleTextColorDark">#ff74736f</color>
     <color name="bibleTextColorLight">@color/gray</color>
+
+    <color name="testGray">#424242</color>
+    <color name="testBackground">#fafafa</color>
+    <color name="weixinbar">#ff363a3b</color>
 </resources>

@@ -7,13 +7,14 @@
     <TextView android:id="@+id/note_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="6dp"
         android:textSize="18dp"
         android:textColor="@color/green"/>
 
     <TextView android:id="@+id/note_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="12dp"
         android:textSize="18dp"
         android:textColor="@color/gray"
         android:lineSpacingExtra="5dp"

@@ -47,10 +47,10 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public void setImmersedStatusBar(){
-        int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
-        View view = findViewById(R.id.about);
-        view.setPadding(0, status_bar_height, 0, 0);
+//        int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");
+//        int status_bar_height = getResources().getDimensionPixelSize(status_bar_height_id);
+//        View view = findViewById(R.id.about);
+//        view.setPadding(0, status_bar_height, 0, 0);
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         mToolbar.setTitle("关于");
         setSupportActionBar(mToolbar);

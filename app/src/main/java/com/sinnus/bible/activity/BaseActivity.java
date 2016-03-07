@@ -20,7 +20,10 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void initTheme(){
-        ThemeUtil.setTheme(this, ThemeUtil.getCurrentTheme(this));
+        if(ThemeUtil.isNightMode(this)) {
+            ThemeUtil.setTheme(this, ThemeUtil.getDarkThemePosition());
+        }
+        else ThemeUtil.setTheme(this, ThemeUtil.getCurrentTheme(this));
     }
     public void setImmersedStatusBar(){
         int status_bar_height_id = getResources().getIdentifier("status_bar_height", "dimen", "android");

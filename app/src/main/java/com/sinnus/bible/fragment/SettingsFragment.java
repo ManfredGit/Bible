@@ -32,7 +32,9 @@ public class SettingsFragment extends PreferenceFragment {
     public boolean nightMode;
 
     public static boolean THEME_COLOR_CHANGED = false;
+    public static boolean NIGHT_MODE_CHANGED = false;
     public static boolean BACKGROUND_COLOR_CHANGED = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +65,10 @@ public class SettingsFragment extends PreferenceFragment {
         String key = preference.getKey();
         if (TextUtils.equals(key, getString(R.string.night_mode_key))) {
             nightMode = !nightMode;
+            NIGHT_MODE_CHANGED = true;//夜间模式是否改变，注意是是否改变，改变了是true，不变式true
             preferenceUtil.saveBooleanParam(getString(R.string.night_mode_key), nightMode);
-            changeTheme(4);
+//            changeTheme(4);
+            reStartActivity();
         }
         if (TextUtils.equals(key, getString(R.string.change_background_color_key))) {
             Dialog dialog = new ChangeBackgroundDialog(getActivity(), "选择背景", ThemeUtil.backGroundColors);
@@ -219,22 +223,24 @@ public class SettingsFragment extends PreferenceFragment {
                     preferenceUtil.saveIntParam(getString(R.string.change_background_color_key), position);
                     System.out.println("背景颜色:" + ThemeUtil.getCurrentBackgroundColor(getActivity()));
                     BACKGROUND_COLOR_CHANGED = true;
-                    initBackground(position);
+                    changeBackgroundColor(position);
                 }
             });
 
         }
     }
 
-    public void initBackground(int position){
-        getView().setBackgroundColor(getActivity().getResources().getColor(
-                ThemeUtil.getCurrentBackgroundColorResourceId(getActivity(), position)
-        ));
+    public void changeBackgroundColor(int position) {
+        ThemeUtil.setBackgroundColor(getActivity(), position);
     }
 
-    public void changeTheme(int position){
+    public void changeTheme(int position) {
         preferenceUtil.saveIntParam(getString(R.string.change_theme_key), position);
         THEME_COLOR_CHANGED = true;
+        reStartActivity();
+    }
+
+    public void reStartActivity() {
         Intent intent = new Intent(getActivity(), getActivity().getClass());
         startActivity(intent);
         getActivity().finish();

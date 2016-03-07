@@ -41,6 +41,7 @@ import com.sinnus.bible.util.AutoRefreshMap;
 import com.sinnus.bible.util.ColorUtil;
 import com.sinnus.bible.util.ThemeUtil;
 import com.sinnus.bible.util.TimeUtil;
+import com.umeng.update.UmengUpdateAgent;
 
 import org.w3c.dom.Text;
 
@@ -93,8 +94,8 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
         initDrawerLayout();
         initFloatingActionButton();
         initMainView();
-
-        ColorUtil.getPixColor(this,R.drawable.t);
+        UmengUpdateAgent.update(this);
+//        ColorUtil.getPixColor(this, R.drawable.t);
     }
 
     @Override
@@ -169,7 +170,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         int id = menuItem.getItemId();
-
+                        int delay = 0;
                         if (id == R.id.nav_history) {
                             final Intent intent = new Intent(MainActivity.this, TrackActivity.class);
                             new Handler().postDelayed(new Runnable() {
@@ -177,7 +178,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
                                 public void run() {
                                     startActivity(intent);
                                 }
-                            }, 250);
+                            }, delay);
                         }
                         if (id == R.id.nav_setting) {
                             final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -186,7 +187,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
                                 public void run() {
                                     startActivity(intent);
                                 }
-                            }, 250);
+                            }, delay);
                         }
                         if (id == R.id.nav_about) {
                             final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
@@ -195,7 +196,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
                                 public void run() {
                                     startActivity(intent);
                                 }
-                            }, 250);
+                            }, delay);
                         }
                         if (id == R.id.nav_exit) {
                             MainActivity.this.finish();
@@ -215,9 +216,7 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                Section section = autoRefreshMap.obtainRandomSection();
-                navSectionContent.setText(section.getContent());
-                navSectionLocation.setText(section.getLocationString());
+                updateHeaderView();
             }
 
             @Override
@@ -334,12 +333,17 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
         return this.autoRefreshMap.obtainChapter(bookId, chapterId);
     }
 
-    public void locateTo(int bookId, int chapterId) { //直接跳转切换
+    public void locateTo(int bookId, int chapterId) { //直接跳转切换，载入book数据，但是并不显示，
         current_book_id = bookId;
         autoRefreshMap.load(bookId);
         current_chapter_id = chapterId;
+        updateHeaderView();//切换书卷后，更新headerview中的section
+        //viewpager跳转到bookId和chapterId对应的那个fragmentId的fragment,
+        // 在fragment中 根据bookID和chapterId
+        //来调用onFragmentInteraction来从activity中找到数据chapter再在fragment中显示
         mViewPager.setCurrentItem(Bible.getMainFragmentIdByInfo(
                 current_book_id, current_chapter_id), false);
+
     }
 
     public void updateBesideBooks(int position) {  //当跳转到一个新的书卷时 需要加载别的书卷
@@ -353,6 +357,12 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
         }
     }
 
+
+    public void updateHeaderView(){
+        Section section = autoRefreshMap.obtainRandomSection();
+        navSectionContent.setText(section.getContent());
+        navSectionLocation.setText(section.getLocationString());
+    }
     public void updateMenu(int position) {
         int a[] = Bible.getRelativeInfoById(position);
         int bookId = a[0];
@@ -394,11 +404,6 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
             sp.setVisibility(View.VISIBLE);
             gridViewChapter.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
     }
 
 }
